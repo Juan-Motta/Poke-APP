@@ -1,5 +1,6 @@
 import SearchIcon from './SearchIcon';
 import {useRef} from 'react';
+import {usePokemonStore} from '../stores/PokemonStore';
 
 export default function Navbar() {
     const inputRef = useRef(null);
@@ -7,6 +8,9 @@ export default function Navbar() {
     function onChangeInput(e) {
         e.preventDefault();
         if (e.keyCode != 13) return;
+        usePokemonStore.setState({
+            pokemonFilterInput: inputRef.current.value,
+        });
         inputRef.current.value = '';
     }
 
