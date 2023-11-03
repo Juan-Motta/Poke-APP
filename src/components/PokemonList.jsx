@@ -2,7 +2,7 @@ import PokemonCard from './PokemonCard';
 import Button from './Button';
 import {request} from 'graphql-request';
 import {useQuery} from '../hooks/useQuery';
-import {useFunctionStore} from '../stores/AppStore'
+import {usePokemonStore} from '../stores/PokemonStore';
 
 const fetcher = query =>
     request('https://beta.pokeapi.co/graphql/v1beta', query).then(
@@ -41,9 +41,10 @@ export default function PokemonList() {
 
     function handleLoad(e) {
         e.preventDefault();
-        const setSize = useFunctionStore.getState().setSize;
-        const size = useFunctionStore.getState().size;
-        setSize(size + 1);
+        const setQueryPageIndex =
+            usePokemonStore.getState().setPokemonQueryPageIndex;
+        const queryPageIndex = usePokemonStore.getState().pokemonQueryPageIndex;
+        setQueryPageIndex(queryPageIndex + 1);
     }
 
     return (
@@ -70,10 +71,7 @@ export default function PokemonList() {
                     })}
                 </ul>
             )}
-            <Button
-                title="Load more"
-                onClick={handleLoad}
-            />
+            <Button title="Load more" onClick={handleLoad} />
         </section>
     );
 }

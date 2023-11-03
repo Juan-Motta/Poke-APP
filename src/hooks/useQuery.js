@@ -1,11 +1,14 @@
 import useSWRInfinite from 'swr/infinite';
-import {useFunctionStore} from '../stores/AppStore';
+import {usePokemonStore} from '../stores/PokemonStore';
 
 export function useQuery(query, fetcher) {
     const {data, error, isLoading, size, setSize} = useSWRInfinite(
         query,
         fetcher
     );
-    useFunctionStore.setState({size, setSize});
+    usePokemonStore.setState({
+        pokemonQueryPageIndex: size,
+        setPokemonQueryPageIndex: setSize,
+    });
     return {data, error, isLoading};
 }
