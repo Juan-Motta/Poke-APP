@@ -1,7 +1,7 @@
 import PokemonCard from './PokemonCard';
 import Button from './Button';
 import {request} from 'graphql-request';
-import {useQuery} from '../hooks/useQuery';
+import {useQueryInfinity} from '../hooks/useQueryInfinity';
 import {usePokemonStore} from '../stores/PokemonStore';
 
 const fetcher = query =>
@@ -37,7 +37,7 @@ const getKey = (pageIndex, previousPageData) => {
 };
 
 export default function PokemonList() {
-    const {data, error, isLoading} = useQuery(getKey, fetcher);
+    const {data, error, isLoading} = useQueryInfinity(getKey, fetcher);
 
     function handleLoad(e) {
         e.preventDefault();
