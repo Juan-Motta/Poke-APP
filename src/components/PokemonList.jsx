@@ -38,6 +38,11 @@ export default function PokemonList() {
     });
     const {data, error, isLoading} = useQuery({query, variables}, fetcher);
 
+    usePokemonStore.setState({
+        variables,
+        setVariables,
+    });
+
     function handleLoad(e) {
         e.preventDefault();
         setVariables(prev => ({...prev, offset: prev.offset + 20}));
