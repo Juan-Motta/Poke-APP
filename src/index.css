@@ -223,6 +223,9 @@
         background-color: theme('colors.shadow-transparent-25');
         color: theme('colors.black');
     }
+    .text-shadow-black {
+        text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5);
+    }
 }
 
 @keyframes spin {
