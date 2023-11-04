@@ -8,9 +8,14 @@ export default function Navbar() {
     function onChangeInput(e) {
         e.preventDefault();
         if (e.keyCode != 13) return;
-        usePokemonStore.setState({
-            pokemonFilterInput: inputRef.current.value,
-        });
+        const input = inputRef.current.value;
+        const setVariables = usePokemonStore.getState().setVariables;
+        usePokemonStore.setState({pokemons: []});
+        if (isNaN(input)) {
+            setVariables({where: {name: {_ilike: `%${input}%`}}});
+        } else {
+            setVariables({where: {id: {_eq: input}}});
+        }
         inputRef.current.value = '';
     }
 
