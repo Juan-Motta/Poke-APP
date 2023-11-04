@@ -13,6 +13,5 @@ export function useQuery(query, fetcher) {
             usePokemonStore.setState({pokemons});
         });
     }
-    console.log(usePokemonStore.getState().pokemons);
     return {data, error, isLoading};
 }
