@@ -107,7 +107,7 @@ export default function PokemonDetailModal() {
                             <div className="flex flex-col items-center justify-end w-1/3">
                                 <div className="flex gap-2 my-auto">
                                     <WeightIcon width={28} height={28} />
-                                    <span>32 kg</span>
+                                    <span>{parseFloat(data.weight*0.1).toFixed(1)} kg</span>
                                 </div>
                                 <div className="flex mt-1">
                                     <span className="mx-auto text-neutral-500">
@@ -119,7 +119,7 @@ export default function PokemonDetailModal() {
                             <div className="flex flex-col items-center justify-end w-1/3">
                                 <div className="flex justify-center gap-2 my-auto">
                                     <RulerIcon width={24} height={24} />
-                                    <div>13 cm</div>
+                                    <div>{data.height*10} cm</div>
                                 </div>
                                 <div className="flex mt-1">
                                     <span className="mx-auto text-neutral-500">
