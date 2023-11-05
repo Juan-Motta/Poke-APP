@@ -6,6 +6,9 @@
     .normal {
         background-color: theme('colors.normal');
     }
+    .text-normal {
+        color: theme('colors.normal');
+    }
     input + .normal {
         background-color: theme('colors.normal');
         color: theme('colors.white');
@@ -16,6 +19,9 @@
     }
     .fighting {
         background-color: theme('colors.fighting');
+    }
+    .text-fighting {
+        color: theme('colors.fighting');
     }
     input + .fighting {
         background-color: theme('colors.fighting');
@@ -28,6 +34,9 @@
     .flying {
         background-color: theme('colors.flying');
     }
+    .text-flying {
+        color: theme('colors.flying');
+    }
     input + .flying {
         background-color: theme('colors.flying');
         color: theme('colors.white');
@@ -38,6 +47,9 @@
     }
     .poison {
         background-color: theme('colors.poison');
+    }
+    .text-poison {
+        color: theme('colors.poison');
     }
     input + .poison {
         background-color: theme('colors.poison');
@@ -50,6 +62,9 @@
     .ground {
         background-color: theme('colors.ground');
     }
+    .text-ground {
+        color: theme('colors.ground');
+    }
     input + .ground {
         background-color: theme('colors.ground');
         color: theme('colors.white');
@@ -60,6 +75,9 @@
     }
     .rock {
         background-color: theme('colors.rock');
+    }
+    .text-rock {
+        color: theme('colors.rock');
     }
     input + .rock {
         background-color: theme('colors.rock');
@@ -72,6 +90,9 @@
     .bug {
         background-color: theme('colors.bug');
     }
+    .text-bug {
+        color: theme('colors.bug');
+    }
     input + .bug {
         background-color: theme('colors.bug');
         color: theme('colors.white');
@@ -82,6 +103,9 @@
     }
     .ghost {
         background-color: theme('colors.ghost');
+    }
+    .text-ghost {
+        color: theme('colors.ghost');
     }
     input + .ghost {
         background-color: theme('colors.ghost');
@@ -94,6 +118,9 @@
     .steel {
         background-color: theme('colors.steel');
     }
+    .text-steel {
+        color: theme('colors.steel');
+    }
     input + .steel {
         background-color: theme('colors.steel');
         color: theme('colors.white');
@@ -104,6 +131,9 @@
     }
     .fire {
         background-color: theme('colors.fire');
+    }
+    .text-fire {
+        color: theme('colors.fire');
     }
     input + .fire {
         background-color: theme('colors.fire');
@@ -116,6 +146,9 @@
     .water {
         background-color: theme('colors.water');
     }
+    .text-water {
+        color: theme('colors.water');
+    }
     input + .water {
         background-color: theme('colors.water');
         color: theme('colors.white');
@@ -126,6 +159,9 @@
     }
     .grass {
         background-color: theme('colors.grass');
+    }
+    .text-grass {
+        color: theme('colors.grass');
     }
     input + .grass {
         background-color: theme('colors.grass');
@@ -138,6 +174,9 @@
     .electric {
         background-color: theme('colors.electric');
     }
+    .text-electric {
+        color: theme('colors.electric');
+    }
     input + .electric {
         background-color: theme('colors.electric');
         color: theme('colors.white');
@@ -148,6 +187,9 @@
     }
     .psychic {
         background-color: theme('colors.psychic');
+    }
+    .text-psychic {
+        color: theme('colors.psychic');
     }
     input + .psychic {
         background-color: theme('colors.psychic');
@@ -160,6 +202,9 @@
     .ice {
         background-color: theme('colors.ice');
     }
+    .text-ice {
+        color: theme('colors.ice');
+    }
     input + .ice {
         background-color: theme('colors.ice');
         color: theme('colors.white');
@@ -170,6 +215,9 @@
     }
     .dragon {
         background-color: theme('colors.dragon');
+    }
+    .text-dragon {
+        color: theme('colors.dragon');
     }
     input + .dragon {
         background-color: theme('colors.dragon');
@@ -182,6 +230,9 @@
     .dark {
         background-color: theme('colors.dark');
     }
+    .text-dark {
+        color: theme('colors.dark');
+    }
     input + .dark {
         background-color: theme('colors.dark');
         color: theme('colors.white');
@@ -192,6 +243,9 @@
     }
     .fairy {
         background-color: theme('colors.fairy');
+    }
+    .text-fairy {
+        color: theme('colors.fairy');
     }
     input + .fairy {
         background-color: theme('colors.fairy');
@@ -204,6 +258,9 @@
     .unknown {
         background-color: theme('colors.unknown');
     }
+    .text-unknown {
+        color: theme('colors.unknown');
+    }
     input + .unknown {
         background-color: theme('colors.unknown');
         color: theme('colors.white');
@@ -214,6 +271,9 @@
     }
     .shadow {
         background-color: theme('colors.shadow');
+    }
+    .text-shadow {
+        color: theme('colors.shadow');
     }
     input + .shadow {
         background-color: theme('colors.shadow');
