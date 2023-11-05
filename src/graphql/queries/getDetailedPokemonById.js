@@ -42,6 +42,12 @@ query getDetailedPokemonById($limit: Int, $offset: Int, $where: pokemon_v2_pokem
           name
         }
       }
+      description: pokemon_v2_pokemonspeciesflavortexts(where: {language_id: {_eq: 9}, pokemon_v2_version: {id: {_eq: 10}}}) {
+        flavor_text
+        pokemon_v2_version {
+          id
+        }
+      }
     }
     height
     weight
