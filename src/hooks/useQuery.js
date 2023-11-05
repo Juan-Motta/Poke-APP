@@ -1,12 +1,12 @@
 import useSWR from 'swr';
 import {usePokemonStore} from '../stores/PokemonStore';
 
-export function useQuery(query, fetcher) {
+export function useQuery(query, fetcher, store = true) {
     const {data, error, isLoading} = useSWR(query, fetcher, {
         revalidateIfStale: false,
         revalidateOnFocus: false,
     });
-    if (data) {
+    if (data && store) {
         const pokemons = usePokemonStore.getState().pokemons;
         data.map(pokemon => {
             pokemons[pokemon.id] = pokemon;

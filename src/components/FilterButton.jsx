@@ -1,4 +1,4 @@
-export default function ({ title, colorClass, handleClick }) {
+export default function ({title, colorClass, handleClick}) {
     return (
         <>
             <button

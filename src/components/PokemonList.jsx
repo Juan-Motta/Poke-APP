@@ -4,39 +4,24 @@ import {request} from 'graphql-request';
 import {useQuery} from '../hooks/useQuery';
 import {usePokemonStore} from '../stores/PokemonStore';
 import {useState} from 'react';
+import {GET_POKEMONS} from '../graphql/queries/getPokemons';
+import {useNavigate} from 'react-router-dom';
 
 const fetcher = ({query, variables}) =>
     request('https://beta.pokeapi.co/graphql/v1beta', query, variables).then(
         data => data.pokemons
     );
 
-const query = `
-query getPokemons($limit: Int, $offset: Int, $where: pokemon_v2_pokemon_bool_exp) {
-    pokemons: pokemon_v2_pokemon(limit: $limit, offset: $offset, where: $where) {
-        name
-        id
-        types: pokemon_v2_pokemontypes {
-            type: pokemon_v2_type {
-                id
-                name
-            }
-        }
-        color: pokemon_v2_pokemonspecy {
-            color: pokemon_v2_pokemoncolor {
-                id
-                name
-            }
-        }
-    }
-}
-`;
-
 export default function PokemonList() {
+    const navigate = useNavigate();
     const [variables, setVariables] = useState({
         limit: 20,
         offset: 0,
     });
-    const {data, error, isLoading} = useQuery({query, variables}, fetcher);
+    const {data, error, isLoading} = useQuery(
+        {query: GET_POKEMONS, variables},
+        fetcher
+    );
 
     usePokemonStore.setState({
         variables,
@@ -61,6 +46,9 @@ export default function PokemonList() {
                                     key={pokemon.id}
                                     style={{width: 'calc(100%/3 - 1.25rem)'}}
                                     className="ml-5"
+                                    onClick={() =>
+                                        navigate(`/pokemon/${pokemon.id}`)
+                                    }
                                 >
                                     <PokemonCard
                                         pokemonId={pokemon.id}
