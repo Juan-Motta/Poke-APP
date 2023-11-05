@@ -1,6 +1,6 @@
 export const GET_POKEMONS = `
 query getPokemons($limit: Int, $offset: Int, $where: pokemon_v2_pokemon_bool_exp) {
-  pokemons: pokemon_v2_pokemon(limit: $limit, offset: $offset, where: $where) {
+  pokemons: pokemon_v2_pokemon(limit: $limit, offset: $offset, where: $where, order_by: {id: asc}) {
       name
       id
       types: pokemon_v2_pokemontypes {
