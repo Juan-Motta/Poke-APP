@@ -19,11 +19,20 @@ export default function Navbar() {
         inputRef.current.value = '';
     }
 
+    function handleClean() {
+        const setVariables = usePokemonStore.getState().setVariables;
+        usePokemonStore.setState({pokemons: []});
+        setVariables({limit: 20, offset: 0});
+    }
+
     return (
         <>
             <nav className="flex mt-8 mb-8">
                 <div className="w-2/3">
-                    <h1 className="text-5xl font-black text-gray-700">
+                    <h1
+                        onClick={handleClean}
+                        className="inline text-5xl font-black text-gray-700 cursor-pointer"
+                    >
                         Pokedex
                     </h1>
                 </div>

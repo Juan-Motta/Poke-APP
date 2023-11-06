@@ -2,17 +2,16 @@ import { useEffect, useState } from 'react';
 import { usePokemonStore } from '../stores/PokemonStore';
 import FilterButton from './FilterButton';
 
-export default function Filter({ options, title }) {
-
+export default function Filter({options, title}) {
     const optionsFilter = Object.entries(options).map(([key, value]) => {
         return {
             title: value.title,
             colorClass: value.colorClass,
-        }
-    })
+        };
+    });
 
-    const [filterList, setFilterList] = useState([])
-    const [filterOptions, setFilterOptions] = useState(optionsFilter)
+    const [filterList, setFilterList] = useState([]);
+    const [filterOptions, setFilterOptions] = useState(optionsFilter);
 
     const selectedFilter = (title, colorClass) => {
         const newFilterList = [...filterList, { title, colorClass }];
@@ -25,7 +24,7 @@ export default function Filter({ options, title }) {
         const newFilterList = filterList.filter((option) => option.title !== title);
         setFilterList(newFilterList);
 
-        const newOption = { title, colorClass };
+        const newOption = {title, colorClass};
         const newFilterOptions = [...filterOptions, newOption];
 
         newFilterOptions.sort((a, b) => a.title.localeCompare(b.title));
@@ -45,30 +44,32 @@ export default function Filter({ options, title }) {
         <div className="mb-2">
             <h2 className="mb-2 text-xl font-bold text-white-700">{title}</h2>
             <hr />
-            <h2 className="mb-2 text-base font-bold text-white-700">Selected</h2>
-            {filterList.length === 0 &&
+            <h2 className="mb-2 text-base font-bold text-white-700">
+                Selected
+            </h2>
+            {filterList.length === 0 && (
                 <>
                     <p className="mt-2 text-gray-500">No filter selected</p>
                 </>
-            }
+            )}
             <ul className="flex flex-wrap mt-2">
-                {filterList.length > 0 ?
-                    Object.entries(filterList).map(([key, value]) => {
-                        return (
-                            <li
-                                key={key}
-                                className="text-xs my-1 mr-2.5"
-                                style={{ width: 'calc(50% - 10px)' }}
-                            >
-                                <FilterButton
-                                    title={value.title}
-                                    colorClass={value.colorClass}
-                                    handleClick={deleteFilter}
-                                />
-                            </li>
-                        );
-                    }) : null
-                }
+                {filterList.length > 0
+                    ? Object.entries(filterList).map(([key, value]) => {
+                          return (
+                              <li
+                                  key={key}
+                                  className="text-xs my-1 mr-2.5"
+                                  style={{width: 'calc(50% - 10px)'}}
+                              >
+                                  <FilterButton
+                                      title={value.title}
+                                      colorClass={value.colorClass}
+                                      handleClick={deleteFilter}
+                                  />
+                              </li>
+                          );
+                      })
+                    : null}
             </ul>
             <  hr className='mt-2' />
             <ul className="flex flex-wrap mt-2">
@@ -77,7 +78,7 @@ export default function Filter({ options, title }) {
                         <li
                             key={key}
                             className="text-xs my-1 mr-2.5"
-                            style={{ width: 'calc(50% - 10px)' }}
+                            style={{width: 'calc(50% - 10px)'}}
                         >
                             <FilterButton
                                 title={value.title}

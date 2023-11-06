@@ -29,7 +29,7 @@ export default function PokemonCard({
             }`}
         >
             <div className="z-10 cursor-pointer">
-                <div className="z-10 flex flex-row justify-between px-3 pt-3">
+                <div className="flex flex-row justify-between px-3 pt-3 ">
                     <h2 className="text-lg font-bold text-white">
                         {pokemonName}
                     </h2>
@@ -37,7 +37,7 @@ export default function PokemonCard({
                         #{String(pokemonId).padStart(3, '0')}
                     </span>
                 </div>
-                <div className="z-10 flex flex-row justify-between px-3 my-3">
+                <div className="flex flex-row justify-between px-3 my-3 ">
                     <div className="flex flex-col w-1/2 pt-4 pr-4 h-100">
                         {pokemonTypes.map(({type}) => (
                             <span
@@ -53,9 +53,7 @@ export default function PokemonCard({
                     </div>
                 </div>
             </div>
-            <div className="">
-                <PokeballIcon />
-            </div>
+            <PokeballIcon />
         </div>
     );
 }
