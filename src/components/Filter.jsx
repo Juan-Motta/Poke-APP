@@ -1,4 +1,5 @@
-import {useState} from 'react';
+import { useEffect, useState } from 'react';
+import { usePokemonStore } from '../stores/PokemonStore';
 import FilterButton from './FilterButton';
 
 export default function Filter({options, title}) {
@@ -13,14 +14,15 @@ export default function Filter({options, title}) {
     const [filterOptions, setFilterOptions] = useState(optionsFilter);
 
     const selectedFilter = (title, colorClass) => {
-        setFilterOptions(
-            filterOptions.filter(option => option.title !== title)
-        );
-        setFilterList([...filterList, {title, colorClass}]);
-    };
+        const newFilterList = [...filterList, { title, colorClass }];
+        setFilterList(newFilterList);
+        setFilterOptions(filterOptions.filter((option) => option.title !== title));
+        updateFilter(newFilterList);
+    }
 
     const deleteFilter = (title, colorClass) => {
-        setFilterList(filterList.filter(option => option.title !== title));
+        const newFilterList = filterList.filter((option) => option.title !== title);
+        setFilterList(newFilterList);
 
         const newOption = {title, colorClass};
         const newFilterOptions = [...filterOptions, newOption];
@@ -28,7 +30,15 @@ export default function Filter({options, title}) {
         newFilterOptions.sort((a, b) => a.title.localeCompare(b.title));
 
         setFilterOptions(newFilterOptions);
-    };
+        updateFilter(newFilterList);
+    }
+    function updateFilter(filterList) {
+        let arraySelectedTypes = filterList.map((item) => item.title);
+        const setVariables = usePokemonStore.getState().setVariables;
+        usePokemonStore.setState({ pokemons: [] });
+        if (title === 'Color') setVariables({ where: { pokemon_v2_pokemonspecy: { pokemon_v2_pokemoncolor: { name: { _in: arraySelectedTypes } } } } })
+        if (title === 'Type') setVariables({ where: { pokemon_v2_pokemontypes: { pokemon_v2_type: { name: { _in: arraySelectedTypes } } } } });
+    }
 
     return (
         <div className="mb-2">
@@ -61,7 +71,7 @@ export default function Filter({options, title}) {
                       })
                     : null}
             </ul>
-            <hr className="mt-2" />
+            <  hr className='mt-2' />
             <ul className="flex flex-wrap mt-2">
                 {Object.entries(filterOptions).map(([key, value]) => {
                     return (
