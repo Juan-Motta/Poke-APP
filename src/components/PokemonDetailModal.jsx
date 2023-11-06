@@ -76,6 +76,7 @@ export default function PokemonDetailModal() {
                         <img src={formatUrl()} alt={data.id} />
                     </div>
                     <div className="pt-16 m-2 -mt-20 bg-white rounded-md">
+                        {/* Types */}
                         <div className="flex justify-center">
                             <div className="flex gap-2 h-100">
                                 {data.types.map(({type}) => (
@@ -88,6 +89,7 @@ export default function PokemonDetailModal() {
                                 ))}
                             </div>
                         </div>
+                        {/* About title */}
                         <div className="flex flex-col my-5">
                             <span
                                 className={`mx-auto text-xl font-bold ${
@@ -100,14 +102,21 @@ export default function PokemonDetailModal() {
                             </span>
                             <hr className="mx-6 mt-3" />
                         </div>
+                        {/* Description */}
                         <div className="mx-6 mb-5">
                             <p>{data.specy.description[0].flavor_text}</p>
                         </div>
+                        {/* About data */}
                         <div className="flex mb-5">
                             <div className="flex flex-col items-center justify-end w-1/3">
                                 <div className="flex gap-2 my-auto">
                                     <WeightIcon width={28} height={28} />
-                                    <span>{parseFloat(data.weight*0.1).toFixed(1)} kg</span>
+                                    <span>
+                                        {parseFloat(data.weight * 0.1).toFixed(
+                                            1
+                                        )}{' '}
+                                        kg
+                                    </span>
                                 </div>
                                 <div className="flex mt-1">
                                     <span className="mx-auto text-neutral-500">
@@ -119,7 +128,7 @@ export default function PokemonDetailModal() {
                             <div className="flex flex-col items-center justify-end w-1/3">
                                 <div className="flex justify-center gap-2 my-auto">
                                     <RulerIcon width={24} height={24} />
-                                    <div>{data.height*10} cm</div>
+                                    <div>{data.height * 10} cm</div>
                                 </div>
                                 <div className="flex mt-1">
                                     <span className="mx-auto text-neutral-500">
@@ -146,6 +155,111 @@ export default function PokemonDetailModal() {
                                         abilities
                                     </span>
                                 </div>
+                            </div>
+                        </div>
+                        {/* Base stats title */}
+                        <div className="flex flex-col my-5">
+                            <span
+                                className={`mx-auto text-xl font-bold ${
+                                    POKEMON_COLORS[
+                                        data.specy.color.name.toUpperCase()
+                                    ].textColorClass
+                                }`}
+                            >
+                                Base Stats
+                            </span>
+                            <hr className="mx-6 mt-3" />
+                        </div>
+                        {/* Base stats */}
+                        <div className="flex mx-5 mb-5">
+                            <div className="flex flex-col pr-5">
+                                <span
+                                    className={`${
+                                        POKEMON_COLORS[
+                                            data.specy.color.name.toUpperCase()
+                                        ].textColorClass
+                                    } font-bold`}
+                                >
+                                    HP
+                                </span>
+                                <span
+                                    className={`${
+                                        POKEMON_COLORS[
+                                            data.specy.color.name.toUpperCase()
+                                        ].textColorClass
+                                    } font-bold`}
+                                >
+                                    ATK
+                                </span>
+                                <span
+                                    className={`${
+                                        POKEMON_COLORS[
+                                            data.specy.color.name.toUpperCase()
+                                        ].textColorClass
+                                    } font-bold`}
+                                >
+                                    DEF
+                                </span>
+                                <span
+                                    className={`${
+                                        POKEMON_COLORS[
+                                            data.specy.color.name.toUpperCase()
+                                        ].textColorClass
+                                    } font-bold`}
+                                >
+                                    SATK
+                                </span>
+                                <span
+                                    className={`${
+                                        POKEMON_COLORS[
+                                            data.specy.color.name.toUpperCase()
+                                        ].textColorClass
+                                    } font-bold`}
+                                >
+                                    SDEF
+                                </span>
+                                <span
+                                    className={`${
+                                        POKEMON_COLORS[
+                                            data.specy.color.name.toUpperCase()
+                                        ].textColorClass
+                                    } font-bold`}
+                                >
+                                    SPD
+                                </span>
+                            </div>
+                            <div className="border-[1px] border-neutral-200 mt-1 mb-1"></div>
+                            <div className="flex flex-col justify-around w-full ml-5 h-100">
+                                {data.stats.map(stat => {
+                                    return (
+                                        <div className="flex items-center gap-5">
+                                            <span className="text-neutral-400">
+                                                {String(
+                                                    stat.base_stat
+                                                ).padStart(3, '0')}
+                                            </span>
+                                            <div
+                                                key={stat.base_stat}
+                                                className="w-full h-2 bg-gray-200 rounded-full "
+                                            >
+                                                <div
+                                                    className={`h-2 rounded-full ${
+                                                        POKEMON_COLORS[
+                                                            data.specy.color.name.toUpperCase()
+                                                        ].colorClass
+                                                    }`}
+                                                    style={{
+                                                        width: `${
+                                                            (stat.base_stat *
+                                                                100) /
+                                                            255
+                                                        }%`,
+                                                    }}
+                                                ></div>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>
