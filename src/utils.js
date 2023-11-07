@@ -30,16 +30,23 @@ export default function updateFilter(value, type) {
     }
 
     if (type === 'name') {
-        where = {
+        if (variables && variables.where && variables.where.id) {
+            delete variables.where.id;
+        }  
+              where = {
             ...variables.where, ...{ name: { _ilike: `%${value}%` } }
         };
     }
 
     if (type === 'id') {
+        if (variables && variables.where && variables.where.name) {
+            delete variables.where.name;
+        }  
         where = {
-            ...variables.where, ...{ id: { _eq: value } }
+            ...variables.where, ...{ id: { _eq: parseInt(value) } }
         };
     }
+
     setVariables({ where, limit, offset, });
 }
 
