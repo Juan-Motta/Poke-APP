@@ -1,7 +1,12 @@
-import {useState} from 'react';
+import { useEffect, useState } from 'react';
+import { usePokemonStore } from '../stores/PokemonStore';
 import FilterButton from './FilterButton';
+import updateFilter from '../utils.js'
 
-export default function Filter({options, title}) {
+export default function Filter({ options, title }) {
+
+    let filterType = title.toLowerCase();
+    
     const optionsFilter = Object.entries(options).map(([key, value]) => {
         return {
             title: value.title,
@@ -13,22 +18,26 @@ export default function Filter({options, title}) {
     const [filterOptions, setFilterOptions] = useState(optionsFilter);
 
     const selectedFilter = (title, colorClass) => {
-        setFilterOptions(
-            filterOptions.filter(option => option.title !== title)
-        );
-        setFilterList([...filterList, {title, colorClass}]);
-    };
+        const newFilterList = [...filterList, { title, colorClass }];
+        setFilterList(newFilterList);
+        setFilterOptions(filterOptions.filter((option) => option.title !== title));
+        let arraySelectedTypes = newFilterList.map((item) => item.title);
+        updateFilter(arraySelectedTypes, filterType);
+    }
 
     const deleteFilter = (title, colorClass) => {
-        setFilterList(filterList.filter(option => option.title !== title));
+        const newFilterList = filterList.filter((option) => option.title !== title);
+        setFilterList(newFilterList);
 
-        const newOption = {title, colorClass};
+        const newOption = { title, colorClass };
         const newFilterOptions = [...filterOptions, newOption];
 
         newFilterOptions.sort((a, b) => a.title.localeCompare(b.title));
 
         setFilterOptions(newFilterOptions);
-    };
+        let arraySelectedTypes = newFilterList.map((item) => item.title);
+        updateFilter(arraySelectedTypes, filterType);
+    }
 
     return (
         <div className="mb-2">
@@ -45,30 +54,30 @@ export default function Filter({options, title}) {
             <ul className="flex flex-wrap mt-2">
                 {filterList.length > 0
                     ? Object.entries(filterList).map(([key, value]) => {
-                          return (
-                              <li
-                                  key={key}
-                                  className="text-xs my-1 mr-2.5"
-                                  style={{width: 'calc(50% - 10px)'}}
-                              >
-                                  <FilterButton
-                                      title={value.title}
-                                      colorClass={value.colorClass}
-                                      handleClick={deleteFilter}
-                                  />
-                              </li>
-                          );
-                      })
+                        return (
+                            <li
+                                key={key}
+                                className="text-xs my-1 mr-2.5"
+                                style={{ width: 'calc(50% - 10px)' }}
+                            >
+                                <FilterButton
+                                    title={value.title}
+                                    colorClass={value.colorClass}
+                                    handleClick={deleteFilter}
+                                />
+                            </li>
+                        );
+                    })
                     : null}
             </ul>
-            <hr className="mt-2" />
+            <  hr className='mt-2' />
             <ul className="flex flex-wrap mt-2">
                 {Object.entries(filterOptions).map(([key, value]) => {
                     return (
                         <li
                             key={key}
                             className="text-xs my-1 mr-2.5"
-                            style={{width: 'calc(50% - 10px)'}}
+                            style={{ width: 'calc(50% - 10px)' }}
                         >
                             <FilterButton
                                 title={value.title}
