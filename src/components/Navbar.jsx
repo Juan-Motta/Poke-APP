@@ -1,6 +1,8 @@
 import SearchIcon from './SearchIcon';
-import {useRef} from 'react';
-import {usePokemonStore} from '../stores/PokemonStore';
+import { useRef } from 'react';
+import { usePokemonStore } from '../stores/PokemonStore';
+import updateFilter from '../utils.js'
+
 
 export default function Navbar() {
     const inputRef = useRef(null);
@@ -9,20 +11,18 @@ export default function Navbar() {
         e.preventDefault();
         if (e.keyCode != 13) return;
         const input = inputRef.current.value;
-        const setVariables = usePokemonStore.getState().setVariables;
-        usePokemonStore.setState({pokemons: []});
         if (isNaN(input)) {
-            setVariables({where: {name: {_ilike: `%${input}%`}}});
+            updateFilter(input, 'name');
         } else {
-            setVariables({where: {id: {_eq: input}}});
+            updateFilter(input, 'id');
         }
         inputRef.current.value = '';
     }
 
     function handleClean() {
         const setVariables = usePokemonStore.getState().setVariables;
-        usePokemonStore.setState({pokemons: []});
-        setVariables({limit: 20, offset: 0});
+        usePokemonStore.setState({ pokemons: [] });
+        setVariables({ limit: 20, offset: 0 });
     }
 
     return (
